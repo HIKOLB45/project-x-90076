@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="uk" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canopy ERP Enterprise | Інженерна Платформа</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body class="bg-[#02040a] text-slate-200 overflow-hidden">
+    <div id="app-preloader" class="fixed inset-0 z-[999] bg-black flex flex-col items-center justify-center">
+        <div class="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-4"></div>
+        <p class="text-xs uppercase tracking-[0.3em] text-blue-500 font-bold">Ініціалізація ядра системи...</p>
+    </div>
+
+    <div id="app-root" class="h-screen flex flex-col opacity-0 transition-opacity duration-700">
+        <nav class="h-14 border-b border-white/5 bg-[#0d1117]/80 backdrop-blur-xl flex items-center justify-between px-6 z-50">
+            <div class="flex items-center gap-4">
+                <div class="flex items-center gap-2 group cursor-pointer">
+                    <div class="w-7 h-7 bg-blue-600 rounded flex items-center justify-center font-black group-hover:rotate-12 transition-transform">C</div>
+                    <span class="font-black text-white tracking-tighter uppercase">Canopy <span class="text-blue-500">ERP</span></span>
+                </div>
+                <div class="h-4 w-[1px] bg-white/10 mx-2"></div>
+                <div id="system-clock" class="text-[10px] font-mono text-slate-500">2026.04.23 | 19:15:42</div>
+            </div>
+            
+            <div class="flex items-center gap-6">
+                <ul class="flex gap-4 text-[11px] font-bold uppercase tracking-widest text-slate-400">
+                    <li class="hover:text-blue-400 cursor-pointer transition-colors" data-route="dashboard">Робочий стіл</li>
+                    <li class="hover:text-blue-400 cursor-pointer transition-colors" data-route="editor">3D Конструктор</li>
+                    <li class="hover:text-blue-400 cursor-pointer transition-colors" data-route="warehouse">Склад</li>
+                    <li class="hover:text-blue-400 cursor-pointer transition-colors" data-route="finance">Фінанси</li>
+                </ul>
+                <button id="btn-export-global" class="bg-blue-600/10 hover:bg-blue-600 border border-blue-600/30 text-blue-400 hover:text-white px-4 py-1.5 rounded text-[10px] font-bold transition-all uppercase">Звіт PDF</button>
+            </div>
+        </nav>
+
+        <div class="flex-grow flex overflow-hidden">
+            <aside id="sidebar-control" class="w-80 bg-[#0d1117] border-r border-white/5 flex flex-col">
+                </aside>
+
+            <main class="flex-grow relative bg-[#010204]">
+                <div id="viewport-3d" class="absolute inset-0"></div>
+                <div id="ui-overlay" class="absolute inset-0 pointer-events-none z-10">
+                    </div>
+            </main>
+        </div>
+
+        <footer class="h-6 bg-[#090c10] border-t border-white/5 px-4 flex items-center justify-between text-[9px] text-slate-500 font-medium">
+            <div class="flex gap-4">
+                <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> ENGINE ONLINE</span>
+                <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span> REPOSITORY V3.0.4</span>
+            </div>
+            <div id="stats-render">FPS: 60 | RAM: 42.4MB</div>
+        </footer>
+    </div>
+
+    <div id="modal-container" class="hidden fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center p-10"></div>
+
+    <script type="module" src="js/core/SystemState.js"></script>
+    <script type="module" src="js/core/AppCore.js"></script>
+</body>
+</html>
